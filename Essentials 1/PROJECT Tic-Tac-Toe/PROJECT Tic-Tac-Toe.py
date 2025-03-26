@@ -1,18 +1,27 @@
 def display_board(board):
     # The function accepts one parameter containing the board's current status
     # and prints it out to the console.
-    for j in range(3):
+    for i in range(3):
         print("+-------+-------+-------+")
         print("|       |       |       |")
-        print("|  ", board[j][0], "  |  ", board[j][1], "  |  ", board[j][2], "  |")
+        print("|  ", board[i][0], "  |  ", board[i][1], "  |  ", board[i][2], "  |")
         print("|       |       |       |")
     print("+-------+-------+-------+")
 
-
-#def enter_move(board):
+def enter_move(board):
     # The function accepts the board's current status, asks the user about their move, 
     # checks the input, and updates the board according to the user's decision.
-
+    move=int(input("Enter your move: "))
+    #controllo parametro
+    while move<1 or move>9:
+        print("Move not allowed!")
+        move=int(input("Enter your move: "))
+    #ricerca casella corrispondente
+    for j in range(3):
+        for i in range(3):
+            if board[i][j]==move:
+                board[i][j]="O"
+    display_board(board)
 
 #def make_list_of_free_fields(board):
     # The function browses the board and builds a list of all the free squares; 
@@ -30,11 +39,14 @@ def display_board(board):
 #creazione tabella e aggiunta parametri
 board = [["" for row in range(3)] for column in range(3)]
 
-for i in range(3):
-    board[0][i]=i+1
-    board[1][i]=i+4
-    board[2][i]=i+7
+for j in range(3):
+    board[0][j]=j+1
+    board[1][j]=j+4
+    board[2][j]=j+7
 board[1][1]="X"
 
 #stampa iniziale
 display_board(board)
+
+#mossa iniziale
+enter_move(board)

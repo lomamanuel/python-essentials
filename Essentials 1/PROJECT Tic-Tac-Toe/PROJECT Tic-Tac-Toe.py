@@ -23,9 +23,15 @@ def enter_move(board):
                 board[i][j]="O"
     display_board(board)
 
-#def make_list_of_free_fields(board):
+def make_list_of_free_fields(board):
     # The function browses the board and builds a list of all the free squares; 
     # the list consists of tuples, while each tuple is a pair of row and column numbers.
+    free_fields=[]
+    for j in range(3):
+        for i in range(3):
+            if board[i][j] in range(1,10):
+                free_fields.append(board[i][j])
+    print(free_fields)
 
 
 #def victory_for(board, sign):
@@ -50,3 +56,6 @@ display_board(board)
 
 #mossa iniziale
 enter_move(board)
+
+#lista caselle libere
+make_list_of_free_fields(board)

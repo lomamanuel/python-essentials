@@ -1,3 +1,4 @@
+import random
 from random import randrange
 
 def display_board(board):
@@ -43,7 +44,7 @@ def make_list_of_free_fields(board):
 
 def draw_move(board, free_fields):
     # The function draws the computer's move and updates the board.
-    computer_move=randrange(free_fields)
+    computer_move=random.choice(free_fields)
     #modifica tabella
     for j in range(3):
         for i in range(3):
@@ -63,12 +64,18 @@ board[1][1]="X"
 #stampa iniziale
 display_board(board)
 
-#mossa iniziale
+#mossa iniziale utente
 enter_move(board)
 
 #lista caselle libere
 free_fields=make_list_of_free_fields(board)
-if free_fields==[]:
-    victory_for()
-else:
+
+while free_fields!=[]:
+    #mossa computer
     draw_move(board, free_fields)
+
+    #mossa utente
+    enter_move(board)
+
+    #caselle rimaste
+    free_fields=make_list_of_free_fields(board)
